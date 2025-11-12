@@ -4,8 +4,8 @@
 
 export const SITE_CONTENT = {
   HERO: {
-    TITLE: 'Welcome to Shay Compass',
-    SUBTITLE: 'Turning Concepts into Reality',
+    TITLE: 'Building Communities, Creating Value',
+    SUBTITLE: 'Premier Real Estate Development & Investment Solutions',
     BACKGROUND_IMAGE: '/background-pgh.webp',
     BACKGROUND_POSITION: '65% center',
   },
@@ -13,32 +13,32 @@ export const SITE_CONTENT = {
   SECTIONS: {
     ABOUT: {
       ID: 'about',
-      TITLE: 'About Us',
+      TITLE: 'About Shay Compass',
     },
     PROJECTS: {
       ID: 'projects',
-      TITLE: 'Our Projects',
+      TITLE: 'Featured Developments',
     },
     CONTACT: {
       ID: 'contact',
-      TITLE: 'Get In Touch',
+      TITLE: 'Start Your Journey',
     },
   },
 
   CONTACT_FORM: {
     NAME: {
-      LABEL: 'Name',
-      PLACEHOLDER: 'Your name',
+      LABEL: 'Full Name',
+      PLACEHOLDER: 'Enter your full name',
     },
     EMAIL: {
-      LABEL: 'Email',
-      PLACEHOLDER: 'your@email.com',
+      LABEL: 'Email Address',
+      PLACEHOLDER: 'your.email@example.com',
     },
     MESSAGE: {
-      LABEL: 'Message',
-      PLACEHOLDER: 'Your message',
+      LABEL: 'How Can We Help?',
+      PLACEHOLDER: 'Tell us about your property goals, investment interests, or development needs...',
     },
-    SUBMIT_BUTTON: 'Send Message',
+    SUBMIT_BUTTON: 'Request Consultation',
     HONEYPOT_LABEL: "Don't fill this out",
   },
 

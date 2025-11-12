@@ -6,7 +6,7 @@ import { projects } from '@/constants/projects';
 export default function ProjectsSection() {
   return (
     <PageSection id="projects" backgroundColor="base-200" maxWidth="max-w-7xl">
-      <SectionHeading title="Our Projects" />
+      <SectionHeading title="Featured Developments" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => (
           <ProjectCard

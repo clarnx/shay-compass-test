@@ -16,7 +16,7 @@ export const navLinkList: NavLink[] = [
     url: "#about",
   },
   {
-    label: "Projects",
+    label: "Developments",
     style: "default",
     url: "#projects",
   },
