@@ -1,4 +1,10 @@
-export const navLinkList = [
+export interface NavLink {
+  label: string;
+  style: string;
+  url: string;
+}
+
+export const navLinkList: NavLink[] = [
   {
     label: "Home",
     style: "default",
