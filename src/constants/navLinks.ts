@@ -2,7 +2,7 @@ export const navLinkList = [
   {
     label: "Home",
     style: "default",
-    url: "/",
+    url: "#home",
   },
   {
     label: "About",
@@ -10,9 +10,9 @@ export const navLinkList = [
     url: "#about",
   },
   {
-    label: "Solutions",
+    label: "Projects",
     style: "default",
-    url: "#solutions",
+    url: "#projects",
   },
   {
     label: "Contact",
