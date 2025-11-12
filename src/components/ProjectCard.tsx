@@ -1,10 +1,12 @@
+import Link from 'next/link';
+
 interface ProjectCardProps {
+  id: string;
   title: string;
   description: string;
-  onLearnMore?: () => void;
 }
 
-export default function ProjectCard({ title, description, onLearnMore }: ProjectCardProps) {
+export default function ProjectCard({ id, title, description }: ProjectCardProps) {
   return (
     <div className="card bg-base-200 shadow-xl hover:shadow-2xl transition-shadow duration-300">
       <figure className="h-48 bg-base-300">
@@ -16,9 +18,11 @@ export default function ProjectCard({ title, description, onLearnMore }: Project
         <h3 className="card-title text-base-content">{title}</h3>
         <p className="text-base-content/70">{description}</p>
         <div className="card-actions justify-end mt-4">
-          <button className="btn btn-primary" onClick={onLearnMore}>
-            Learn More
-          </button>
+          <Link href={`/projects/${id}`}>
+            <button className="btn btn-primary">
+              Learn More
+            </button>
+          </Link>
         </div>
       </div>
     </div>
