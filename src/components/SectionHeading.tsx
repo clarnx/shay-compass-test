@@ -9,7 +9,7 @@ export default function SectionHeading({ title }: SectionHeadingProps) {
         {title}
       </h2>
       {/* Subtle decorative line with gradient */}
-      <div className="w-20 h-1 bg-gradient-to-r from-transparent via-gray-800 to-transparent rounded-full"></div>
+      {/* <div className="w-20 h-1 bg-gradient-to-r from-transparent via-gray-800 to-transparent rounded-full"></div> */}
     </div>
   );
 }

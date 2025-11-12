@@ -4,6 +4,7 @@ import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
 import { getAllProjects } from '@/util/payloadQueries';
 import { transformPayloadProject } from '@/util/transformPayloadData';
+import NeighborhoodSection from '@/components/NeighborhoodSection';
 
 export default async function Home() {
   // Fetch projects from Payload CMS
@@ -21,8 +22,9 @@ export default async function Home() {
   return (
     <main className="relative">
       <HeroSection />
-      <AboutSection />
       <ProjectsSection projects={projects} />
+      <NeighborhoodSection />
+      <AboutSection />
       <ContactSection />
     </main>
   );

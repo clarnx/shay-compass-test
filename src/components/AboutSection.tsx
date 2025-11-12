@@ -1,10 +1,11 @@
+import Link from 'next/link';
 import PageSection from './PageSection';
 import SectionHeading from './SectionHeading';
 
 export default function AboutSection() {
   return (
-    <PageSection id="about">
-      <SectionHeading title="About Shay Compass" />
+    <PageSection id="team">
+      <SectionHeading title="Meet the Team" />
       <div className="max-w-3xl mx-auto">
         <div className="text-lg md:text-xl text-base-content/80 space-y-6 leading-relaxed">
           <p>
@@ -13,12 +14,36 @@ export default function AboutSection() {
             in property development, construction management, and market analysis, we transform strategic
             visions into tangible assets that deliver lasting value.
           </p>
-          <p>
-            Our comprehensive approach encompasses site acquisition, entitlement navigation, design
-            oversight, construction management, and strategic disposition. We pride ourselves on our
-            meticulous attention to detail, market expertise, and unwavering commitment to quality that
-            exceeds industry standards and client expectations.
-          </p>
+          {/* List of company icons */}
+          <div className="flex gap-12 mt-6 justify-between">
+                      <Link href={`/team`}>
+            <button className="py-2.5 text-black font-medium italic rounded-lg hover:font-bold transition">
+              Learn More
+            </button>
+          </Link>
+            <div className='flex gap-12'>
+            <img
+              src="https://picsum.photos/120/120"
+              alt="Company 1"
+              className="h-12 object-contain rounded-full"
+            />
+            <img
+              src="https://picsum.photos/120/120"
+              alt="Company 2"
+              className="h-12 object-contain rounded-full"
+            />
+            <img
+              src="https://picsum.photos/120/120"
+              alt="Company 3"
+              className="h-12 object-contain rounded-full"
+            />
+            <img
+              src="https://picsum.photos/120/120"
+              alt="Company 4"
+              className="h-12 object-contain rounded-full"
+            />
+            </div>
+          </div>
         </div>
       </div>
     </PageSection>

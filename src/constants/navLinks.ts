@@ -11,14 +11,19 @@ export const navLinkList: NavLink[] = [
     url: "#home",
   },
   {
-    label: "About",
-    style: "default",
-    url: "#about",
-  },
-  {
-    label: "Developments",
+    label: "Projects",
     style: "default",
     url: "#projects",
+  },
+  {
+    label: "Neighborhood",
+    style: "default",
+    url: "#neighborhood",
+  },
+  {
+    label: "The Team",
+    style: "default",
+    url: "#team",
   },
   {
     label: "Contact",
