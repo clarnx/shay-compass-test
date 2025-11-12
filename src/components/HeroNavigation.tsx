@@ -16,12 +16,11 @@ export default function HeroNavigation() {
   return (
     <nav
       style={{
-        transform: isSticky ? 'translateX(-50%) translateY(0)' : 'translateX(0) translateY(0)',
         zIndex: LAYOUT_CONSTANTS.Z_INDEX.HERO_NAV,
       }}
       className={clsx(
         "transition-all duration-500 ease-in-out max-lg:hidden",
-        isSticky ? "fixed top-4 left-1/2" : "relative"
+        isSticky ? "fixed top-4" : "relative"
       )}
     >
       <ul className={clsx(
