@@ -2296,6 +2296,11 @@ dom-helpers@^5.0.1:
     "@babel/runtime" "^7.8.7"
     csstype "^3.0.2"
 
+dotenv@^17.2.3:
+  version "17.2.3"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-17.2.3.tgz#ad995d6997f639b11065f419a22fabf567cdb9a2"
+  integrity sha512-JVUnt+DUIzu87TABbhPmNfVdBDt18BLOWjMUFJMSi/Qqg7NTYtabbvSNJGOJ7afbRuv9D/lngizHtP7QyLQ+9w==
+
 drizzle-kit@0.31.5:
   version "0.31.5"
   resolved "https://registry.yarnpkg.com/drizzle-kit/-/drizzle-kit-0.31.5.tgz#a875f053e759fcc03adc0e09b96af7fbef325c91"
@@ -5583,7 +5588,7 @@ tsx@4.20.3:
   optionalDependencies:
     fsevents "~2.3.3"
 
-tsx@4.20.6:
+tsx@4.20.6, tsx@^4.20.6:
   version "4.20.6"
   resolved "https://registry.yarnpkg.com/tsx/-/tsx-4.20.6.tgz#8fb803fd9c1f70e8ccc93b5d7c5e03c3979ccb2e"
   integrity sha512-ytQKuwgmrrkDTFP4LjR0ToE2nqgy886GpvRSpU0JAnrdBYppuY5rLkRUYPU1yCryb24SsKBTL/hlDQAEFVwtZg==
