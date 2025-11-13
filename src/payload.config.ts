@@ -7,17 +7,17 @@ import { fileURLToPath } from "url";
 import sharp from "sharp";
 
 // Import collections
-import { Users } from "./collections/Users";
-import { Media } from "./collections/Media";
-import { Projects } from "./collections/Projects";
+import { Users } from "./collections/Users.ts";
+import { Media } from "./collections/Media.ts";
+import { Projects } from "./collections/Projects.ts";
 
 // Import globals
-import { HeroSection } from "./globals/HeroSection";
-import { TeamSection } from "./globals/TeamSection";
-import { NeighborhoodSection } from "./globals/NeighborhoodSection";
-import { ContactSection } from "./globals/ContactSection";
-import { TeamPage } from "./globals/TeamPage";
-import { NeighborhoodPage } from "./globals/NeighborhoodPage";
+import { HeroSection } from "./globals/HeroSection.ts";
+import { TeamSection } from "./globals/TeamSection.ts";
+import { NeighborhoodSection } from "./globals/NeighborhoodSection.ts";
+import { ContactSection } from "./globals/ContactSection.ts";
+import { TeamPage } from "./globals/TeamPage.ts";
+import { NeighborhoodPage } from "./globals/NeighborhoodPage.ts";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
