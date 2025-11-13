@@ -3,6 +3,7 @@ import { withPayload } from '@payloadcms/next/withPayload'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Your Next.js config options here
+  output: 'standalone',
   serverExternalPackages: [
     'sharp',
     '@payloadcms/db-postgres',
@@ -18,6 +19,11 @@ const nextConfig = {
         '@node-rs/argon2',
         '@node-rs/bcrypt',
       )
+      // Reduce bundle size
+      config.optimization = {
+        ...config.optimization,
+        moduleIds: 'deterministic',
+      }
     }
     return config
   },
