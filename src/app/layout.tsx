@@ -1,22 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Didact_Gothic } from "next/font/google";
-
-import Footer from "@/components/footer";
-import HeroNavigation from "@/components/HeroNavigation";
-import NavBar from "@/components/navbar";
-import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: '--font-inter',
-  display: 'swap',
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: '--font-playfair',
-  display: 'swap',
-});
+import { Didact_Gothic } from "next/font/google";
 
 const didactGothic = Didact_Gothic({
   subsets: ["latin"],
@@ -36,12 +19,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="light" style={{ scrollBehavior: 'smooth' }}>
+    <html lang="en" data-theme="light" style={{ scrollBehavior: 'smooth' }} suppressHydrationWarning>
       <body className={`${didactGothic.variable}`}>
-        <HeroNavigation />
-        <NavBar />
         {children}
-        <Footer />
       </body>
     </html>
   );
