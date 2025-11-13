@@ -1,7 +1,6 @@
-import Button from '@/ui/button';
 import PageSection from './PageSection';
 import SectionHeading from './SectionHeading';
-import Link from 'next/link';
+import Button from '@/ui/button';
 import Image from 'next/image';
 
 export default function NeighborhoodSection() {
@@ -23,11 +22,9 @@ export default function NeighborhoodSection() {
             in property development, construction management, and market analysis, we transform strategic
             visions into tangible assets that deliver lasting value.
           </p>
-          <Link href={`/neighborhood`}>
-            <button className="py-2.5 text-black font-light italic rounded-lg hover:font-medium transition">
-              Learn More
-            </button>
-          </Link>
+          <Button href="/neighberhood" variant="text" size="lg">
+            Learn More
+          </Button>
         </div>
       </div>
     </PageSection>

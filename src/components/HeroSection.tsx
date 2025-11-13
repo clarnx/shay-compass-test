@@ -1,5 +1,5 @@
-import HeroNavigation from './HeroNavigation';
 import { SITE_CONTENT } from '@/constants/siteContent';
+import HeroNavigation from './HeroNavigation';
 
 export default function HeroSection() {
   return (

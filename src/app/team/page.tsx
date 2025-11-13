@@ -30,9 +30,9 @@ const TeamPage = () => {
     ];
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-8 pt-24">
             <h1 className="text-3xl font-bold text-center mb-8">Our Team Partners</h1>
-            
+
             <div className="space-y-8">
                 {companies.map((company) => (
                     <div key={company.id} className="flex flex-col md:flex-row items-center gap-6 p-6 bg-white rounded-lg shadow-md">
@@ -45,7 +45,7 @@ const TeamPage = () => {
                                 className="object-contain rounded"
                             />
                         </div>
-                        
+
                         <div className="flex-1">
                             <h2 className="text-2xl font-semibold mb-3 text-gray-800">
                                 {company.name}

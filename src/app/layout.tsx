@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display, Didact_Gothic } from "next/font/google";
 
 import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
-import NavLinks from "@/components/NavLinks";
+import HeroNavigation from "@/components/HeroNavigation";
+import NavBar from "@/components/navbar";
 import "./globals.css";
 
 const inter = Inter({
@@ -38,9 +38,8 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light" style={{ scrollBehavior: 'smooth' }}>
       <body className={`${didactGothic.variable}`}>
-        <Navbar>
-          <NavLinks />
-        </Navbar>
+        <HeroNavigation />
+        <NavBar />
         {children}
         <Footer />
       </body>

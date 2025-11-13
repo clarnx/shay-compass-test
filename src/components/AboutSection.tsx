@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import PageSection from './PageSection';
 import SectionHeading from './SectionHeading';
+import Button from '@/ui/button';
 
 export default function AboutSection() {
   return (
@@ -14,34 +14,33 @@ export default function AboutSection() {
             in property development, construction management, and market analysis, we transform strategic
             visions into tangible assets that deliver lasting value.
           </p>
-          {/* List of company icons */}
+
           <div className="flex gap-12 mt-6 justify-between">
-                      <Link href={`/team`}>
-            <button className="py-2.5 text-black font-medium italic rounded-lg hover:font-bold transition">
+            <Button href="/team" variant="text" size="lg">
               Learn More
-            </button>
-          </Link>
+            </Button>
+
             <div className='flex gap-12'>
-            <img
-              src="https://picsum.photos/120/120"
-              alt="Company 1"
-              className="h-12 object-contain rounded-full"
-            />
-            <img
-              src="https://picsum.photos/120/120"
-              alt="Company 2"
-              className="h-12 object-contain rounded-full"
-            />
-            <img
-              src="https://picsum.photos/120/120"
-              alt="Company 3"
-              className="h-12 object-contain rounded-full"
-            />
-            <img
-              src="https://picsum.photos/120/120"
-              alt="Company 4"
-              className="h-12 object-contain rounded-full"
-            />
+              <img
+                src="https://picsum.photos/120/120"
+                alt="Company 1"
+                className="h-12 object-contain rounded-full"
+              />
+              <img
+                src="https://picsum.photos/120/120"
+                alt="Company 2"
+                className="h-12 object-contain rounded-full"
+              />
+              <img
+                src="https://picsum.photos/120/120"
+                alt="Company 3"
+                className="h-12 object-contain rounded-full"
+              />
+              <img
+                src="https://picsum.photos/120/120"
+                alt="Company 4"
+                className="h-12 object-contain rounded-full"
+              />
             </div>
           </div>
         </div>

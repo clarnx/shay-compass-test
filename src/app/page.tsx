@@ -2,6 +2,7 @@ import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
+import HashScrollHandler from '@/components/HashScrollHandler';
 import { getAllProjects } from '@/util/payloadQueries';
 import { transformPayloadProject } from '@/util/transformPayloadData';
 import NeighborhoodSection from '@/components/NeighborhoodSection';
@@ -21,6 +22,7 @@ export default async function Home() {
 
   return (
     <main className="relative">
+      <HashScrollHandler />
       <HeroSection />
       <ProjectsSection projects={projects} />
       <NeighborhoodSection />
