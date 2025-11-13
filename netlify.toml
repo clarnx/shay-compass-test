@@ -10,8 +10,7 @@
   NEXT_PRIVATE_STANDALONE = "true"
 
 [functions]
-  node_bundler = "esbuild"
-  external_node_modules = ["sharp", "@payloadcms/db-postgres", "payload", "drizzle-orm", "@node-rs/argon2", "@node-rs/bcrypt"]
+  node_bundler = "nft"
 
 [[headers]]
   for = "/*"
