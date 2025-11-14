@@ -1,0 +1,32 @@
+diff --git a/node_modules/@payloadcms/storage-vercel-blob/dist/handleDelete.js b/node_modules/@payloadcms/storage-vercel-blob/dist/handleDelete.js
+index eb5d4e8..977a9c0 100644
+--- a/node_modules/@payloadcms/storage-vercel-blob/dist/handleDelete.js
++++ b/node_modules/@payloadcms/storage-vercel-blob/dist/handleDelete.js
+@@ -1,12 +1,21 @@
+ import { del } from '@vercel/blob';
+ import path from 'path';
+-export const getHandleDelete = ({ baseUrl, token })=>{
+-    return async ({ doc: { prefix = '' }, filename })=>{
++export const getHandleDelete = ({ baseUrl, prefix = '', token })=>{
++    return async ({ filename })=>{
++        // Use prefix from closure (collection config) instead of doc
+         const fileUrl = `${baseUrl}/${path.posix.join(prefix, filename)}`;
+-        const deletedBlob = await del(fileUrl, {
+-            token
+-        });
+-        return deletedBlob;
++        console.log(`[PATCH] handleDelete: Attempting to delete blob at ${fileUrl}`);
++        try {
++            const deletedBlob = await del(fileUrl, {
++                token
++            });
++            console.log(`[PATCH] handleDelete: Successfully deleted blob at ${fileUrl}`);
++            return deletedBlob;
++        } catch (error) {
++            console.error(`[PATCH] handleDelete: Error deleting blob at ${fileUrl}:`, error);
++            // Don't throw - allow deletion to continue even if blob is already gone
++            return null;
++        }
+     };
+ };
+ 

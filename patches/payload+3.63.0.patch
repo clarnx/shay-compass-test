@@ -1,0 +1,210 @@
+diff --git a/node_modules/payload/dist/collections/operations/delete.js b/node_modules/payload/dist/collections/operations/delete.js
+index 01350e7..6b0a35d 100644
+--- a/node_modules/payload/dist/collections/operations/delete.js
++++ b/node_modules/payload/dist/collections/operations/delete.js
+@@ -137,19 +137,26 @@ export const deleteOperation = async (incomingArgs)=>{
+                         req
+                     });
+                 }
++                console.log(`[PATCH] delete.js: About to delete document with ID: ${id}`);
+                 // /////////////////////////////////////
+                 // Delete document
+                 // /////////////////////////////////////
+-                await payload.db.deleteOne({
+-                    collection: collectionConfig.slug,
+-                    req,
+-                    returning: false,
+-                    where: {
+-                        id: {
+-                            equals: id
++                try {
++                    await payload.db.deleteOne({
++                        collection: collectionConfig.slug,
++                        req,
++                        returning: false,
++                        where: {
++                            id: {
++                                equals: id
++                            }
+                         }
+-                    }
+-                });
++                    });
++                    console.log(`[PATCH] delete.js: Successfully deleted document with ID: ${id}`);
++                } catch (error) {
++                    console.error(`[PATCH] delete.js: Error deleting document with ID ${id}:`, error);
++                    throw error;
++                }
+                 // /////////////////////////////////////
+                 // afterRead - Fields
+                 // /////////////////////////////////////
+@@ -182,20 +189,27 @@ export const deleteOperation = async (incomingArgs)=>{
+                         }) || result;
+                     }
+                 }
++                console.log(`[PATCH] delete.js: About to run afterDelete hooks for ID: ${id}`);
+                 // /////////////////////////////////////
+                 // afterDelete - Collection
+                 // /////////////////////////////////////
+                 if (collectionConfig.hooks?.afterDelete?.length) {
+                     for (const hook of collectionConfig.hooks.afterDelete){
+-                        result = await hook({
+-                            id,
+-                            collection: collectionConfig,
+-                            context: req.context,
+-                            doc: result,
+-                            req
+-                        }) || result;
++                        try {
++                            result = await hook({
++                                id,
++                                collection: collectionConfig,
++                                context: req.context,
++                                doc: result,
++                                req
++                            }) || result;
++                        } catch (error) {
++                            console.error(`[PATCH] delete.js: Error in afterDelete hook for ID ${id}:`, error);
++                            throw error;
++                        }
+                     }
+                 }
++                console.log(`[PATCH] delete.js: Completed afterDelete hooks for ID: ${id}`);
+                 // /////////////////////////////////////
+                 // 8. Return results
+                 // /////////////////////////////////////
+@@ -209,15 +223,22 @@ export const deleteOperation = async (incomingArgs)=>{
+             return null;
+         });
+         const awaitedDocs = await Promise.all(promises);
++        console.log(`[PATCH] delete.js: About to delete user preferences for ${docs.length} documents`);
+         // /////////////////////////////////////
+         // Delete Preferences
+         // /////////////////////////////////////
+-        await deleteUserPreferences({
+-            collectionConfig,
+-            ids: docs.map(({ id })=>id),
+-            payload,
+-            req
+-        });
++        try {
++            await deleteUserPreferences({
++                collectionConfig,
++                ids: docs.map(({ id })=>id),
++                payload,
++                req
++            });
++            console.log(`[PATCH] delete.js: Successfully deleted user preferences`);
++        } catch (error) {
++            console.error(`[PATCH] delete.js: Error deleting user preferences:`, error);
++            throw error;
++        }
+         let result = {
+             docs: awaitedDocs.filter(Boolean),
+             errors
+diff --git a/node_modules/payload/dist/collections/operations/deleteByID.js b/node_modules/payload/dist/collections/operations/deleteByID.js
+index 5c75465..97abc28 100644
+--- a/node_modules/payload/dist/collections/operations/deleteByID.js
++++ b/node_modules/payload/dist/collections/operations/deleteByID.js
+@@ -83,6 +83,7 @@ export const deleteByIDOperation = async (incomingArgs)=>{
+         // /////////////////////////////////////
+         // Handle potentially locked documents
+         // /////////////////////////////////////
++        console.log(`[PATCH] deleteByID: Step 1 - Checking document lock`);
+         await checkDocumentLockStatus({
+             id,
+             collectionSlug: collectionConfig.slug,
+@@ -90,6 +91,7 @@ export const deleteByIDOperation = async (incomingArgs)=>{
+             overrideLock,
+             req
+         });
++        console.log(`[PATCH] deleteByID: Step 2 - Deleting associated files`);
+         await deleteAssociatedFiles({
+             collectionConfig,
+             config,
+@@ -97,10 +99,12 @@ export const deleteByIDOperation = async (incomingArgs)=>{
+             overrideDelete: true,
+             req
+         });
++        console.log(`[PATCH] deleteByID: Step 3 - Checking for versions`);
+         // /////////////////////////////////////
+         // Delete versions
+         // /////////////////////////////////////
+         if (collectionConfig.versions) {
++            console.log(`[PATCH] deleteByID: Step 3a - Deleting versions`);
+             await deleteCollectionVersions({
+                 id,
+                 slug: collectionConfig.slug,
+@@ -108,10 +112,12 @@ export const deleteByIDOperation = async (incomingArgs)=>{
+                 req
+             });
+         }
++        console.log(`[PATCH] deleteByID: Step 4 - Checking for scheduled posts`);
+         // /////////////////////////////////////
+         // Delete scheduled posts
+         // /////////////////////////////////////
+         if (collectionConfig.versions?.drafts && collectionConfig.versions.drafts.schedulePublish) {
++            console.log(`[PATCH] deleteByID: Step 4a - Deleting scheduled posts`);
+             await deleteScheduledPublishJobs({
+                 id,
+                 slug: collectionConfig.slug,
+@@ -119,24 +125,34 @@ export const deleteByIDOperation = async (incomingArgs)=>{
+                 req
+             });
+         }
++        console.log(`[PATCH] deleteByID: Step 5 - Sanitizing select`);
+         const select = sanitizeSelect({
+             fields: collectionConfig.flattenedFields,
+             forceSelect: collectionConfig.forceSelect,
+             select: incomingSelect
+         });
++        console.log(`[PATCH] deleteByID: Step 6 - Ready to delete document`);
+         // /////////////////////////////////////
+         // Delete document
+         // /////////////////////////////////////
+-        let result = await req.payload.db.deleteOne({
+-            collection: collectionConfig.slug,
+-            req,
+-            select,
+-            where: {
+-                id: {
+-                    equals: id
++        console.log(`[PATCH] deleteByID: About to delete document with ID: ${id}`);
++        let result;
++        try {
++            result = await req.payload.db.deleteOne({
++                collection: collectionConfig.slug,
++                req,
++                select,
++                where: {
++                    id: {
++                        equals: id
++                    }
+                 }
+-            }
+-        });
++            });
++            console.log(`[PATCH] deleteByID: Successfully deleted document with ID: ${id}`);
++        } catch (error) {
++            console.error(`[PATCH] deleteByID: Error deleting document with ID ${id}:`, error);
++            throw error;
++        }
+         // /////////////////////////////////////
+         // Delete Preferences
+         // /////////////////////////////////////
+diff --git a/node_modules/payload/dist/uploads/deleteAssociatedFiles.js b/node_modules/payload/dist/uploads/deleteAssociatedFiles.js
+index e06a3b4..4e38703 100644
+--- a/node_modules/payload/dist/uploads/deleteAssociatedFiles.js
++++ b/node_modules/payload/dist/uploads/deleteAssociatedFiles.js
+@@ -5,6 +5,11 @@ export const deleteAssociatedFiles = async ({ collectionConfig, doc, files = [],
+     if (!collectionConfig.upload) {
+         return;
+     }
++    // Skip local file deletion when using cloud storage
++    if (collectionConfig.upload.disableLocalStorage) {
++        console.log(`[PATCH] deleteAssociatedFiles: Skipping local file deletion for ${doc.filename} (cloud storage enabled)`);
++        return;
++    }
+     if (overrideDelete || files.length > 0) {
+         const { staticDir: staticPath } = collectionConfig.upload;
+         const fileToDelete = `${staticPath}/${doc.filename}`;
