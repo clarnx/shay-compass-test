@@ -4,12 +4,26 @@ export const Media: CollectionConfig = {
   slug: 'media',
   access: {
     read: () => true,
+    create: () => true,
+    update: () => true,
+    delete: () => true,
   },
   fields: [
     {
       name: 'alt',
       type: 'text',
-      required: true,
+      required: false,
+      hooks: {
+        beforeValidate: [
+          ({ value, data }) => {
+            // Auto-generate alt text from filename if not provided
+            if (!value && data?.filename) {
+              return data.filename.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ')
+            }
+            return value || 'Uploaded image'
+          },
+        ],
+      },
     },
   ],
   upload: {
