@@ -18,14 +18,14 @@ export function getMediaUrl(
 
   if (typeof media === 'string') return media;
 
-  // If media object has filename, construct direct path to public/media
-  if (isMediaObject(media) && media.filename) {
-    return `/media/${media.filename}`;
-  }
-
-  // Fallback to URL property if available
+  // Prioritize URL property (from Vercel Blob or other cloud storage)
   if (isMediaObject(media) && media.url) {
     return media.url;
+  }
+
+  // Fallback to local path if no URL is available
+  if (isMediaObject(media) && media.filename) {
+    return `/media/${media.filename}`;
   }
 
   return fallback;
