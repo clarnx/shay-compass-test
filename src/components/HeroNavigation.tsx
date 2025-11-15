@@ -41,7 +41,7 @@ export default function HeroNavigation() {
       style={{ zIndex: LAYOUT_CONSTANTS.Z_INDEX.HERO_NAV }}
       className={clsx(
         positionClass,
-        "transition-all duration-500 ease-in-out max-lg:hidden"
+        "transition-all duration-200 ease-in-out max-lg:hidden"
       )}
     >
       <ul
