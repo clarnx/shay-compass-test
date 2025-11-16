@@ -19,6 +19,7 @@ export default function ProjectsSection({ title = "Featured Developments", proje
             id={project.id}
             title={project.title}
             description={project.description}
+            heroImage={project.heroImage}
           />
         ))}
       </div>
