@@ -1,4 +1,4 @@
-import HeroNavigation from './HeroNavigation';
+import HeroNavigation from "./HeroNavigation";
 
 interface HeroSectionProps {
   title?: string;
@@ -11,7 +11,7 @@ export default function HeroSection({
   title,
   subtitle,
   backgroundImage,
-  backgroundPosition = '50% center',
+  backgroundPosition = "50% center",
 }: HeroSectionProps) {
   return (
     <section
@@ -24,10 +24,8 @@ export default function HeroSection({
     >
       <div className="absolute inset-0 bg-black/40"></div>
 
-      <div className="relative z-10 text-center text-white px-6 mb-12">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6">
-          {title}
-        </h1>
+      <div className="relative z-10 text-center text-white px-6 mb-32">
+        <h1 className="text-5xl md:text-7xl font-bold mb-6">{title}</h1>
         <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto">
           {subtitle}
         </p>
