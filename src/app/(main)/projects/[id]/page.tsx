@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import PropertyImageGallery from '@/components/PropertyImageGallery';
 import { getAllProjectSlugs, getProjectBySlug } from '@/util/payloadQueries';
 import { transformPayloadProject } from '@/util/transformPayloadData';
