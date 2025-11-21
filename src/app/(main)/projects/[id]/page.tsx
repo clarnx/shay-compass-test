@@ -41,11 +41,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <>
       {/* Hero Section with Property Image */}
-      <section
-        className="relative h-[30vh] w-full bg-gray-50 flex items-end pt-20"
-      >
+      <section>
         {/* Content container */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pb-4">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 mt-24">
           <h1 className="text-5xl md:text-6xl font-bold text-black mb-4">{project.title}</h1>
           <p className="text-xl md:text-2xl text-black/90 font-light max-w-3xl">
             {project.description}
@@ -54,7 +52,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </section>
 
       {/* Main Content Section */}
-      <section className="bg-gray-50 py-24 md:py-32 px-6">
+      <section className="bg-gray-50 py-24 md:py-12 px-6">
         <div className="max-w-7xl mx-auto">
           {/* Glass morphism content container */}
           <div className="bg-white/60 backdrop-blur-md border border-gray-200 rounded-2xl shadow-lg p-8 md:p-12 mb-12">
