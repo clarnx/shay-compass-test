@@ -1,5 +1,7 @@
+import { FormEvent } from 'react';
 import PageSection from './PageSection';
 import SectionHeading from './SectionHeading';
+import router from 'next/router';
 
 interface ContactSectionProps {
   title: string;
@@ -22,6 +24,23 @@ export default function ContactSection({
   messagePlaceholder,
   submitButtonText,
 }: ContactSectionProps) {
+
+  const handleFormSubmit = (event: { preventDefault: () => void; target: any }) => {
+    event.preventDefault();
+
+    const myForm = event.target;
+    const formData = new FormData(myForm);
+
+    fetch("__form.html", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      // @ts-ignore
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => router.push("/success"))
+      .catch((error) => alert(error));
+  };
+
   return (
     <PageSection id="contact" maxWidth="max-w-7xl">
       <SectionHeading title={title} />
@@ -32,6 +51,7 @@ export default function ContactSection({
           data-netlify="true"
           data-netlify-honeypot="honeypot"
           className="space-y-6"
+          onSubmit={(e) => handleFormSubmit(e)}
         >
           <input
             type="text"
