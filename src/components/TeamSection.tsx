@@ -48,7 +48,7 @@ export default function TeamSection({
                       alt={company.alt || `${company.name} logo`}
                       width={64}
                       height={64}
-                      className="w-24 h-24 object-fit rounded-full bg-white p-2 transition-transform hover:scale-110"
+                      className="w-24 h-24 object-contain rounded-full bg-white p-2 transition-transform hover:scale-110 border border-gray-200 shadow-sm"
                     />
                   );
 

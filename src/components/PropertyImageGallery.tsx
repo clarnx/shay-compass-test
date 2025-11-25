@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface PropertyImageGalleryProps {
   images: string[];
@@ -20,14 +21,16 @@ export default function PropertyImageGallery({ images, propertyName }: PropertyI
             className="group bg-white/90 backdrop-blur-sm border border-gray-300 hover:border-gray-500 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
           >
             <div className="relative w-full h-auto bg-gradient-to-br from-gray-50 to-gray-100">
-              <Image
-                src={image}
-                alt={`${propertyName} - Image ${index + 1}`}
-                width={800}
-                height={600}
-                className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              />
+              <Link href={image} target="_blank" rel="noopener noreferrer">
+                <Image
+                  src={image}
+                  alt={`${propertyName} - Image ${index + 1}`}
+                  width={800}
+                  height={600}
+                  className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+              </Link>
             </div>
           </div>
         ))}

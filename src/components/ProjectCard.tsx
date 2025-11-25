@@ -26,7 +26,7 @@ export default function ProjectCard({ id, title, description, heroImage }: Proje
 
         <div className="flex mt-auto">
           <button className="py-2.5 text-xl text-black italic rounded-lg hover:font-medium transition">
-            View Project
+            View Property
           </button>
         </div>
       </div>
