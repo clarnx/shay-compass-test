@@ -4,7 +4,7 @@ export interface Project {
   description: string;
   image?: string;
   heroImage: string;
-  fullDescription?: string;
+  fullDescription?: any; // Lexical rich text format
   technologies?: string[];
   features?: string[];
   gallery?: string[];

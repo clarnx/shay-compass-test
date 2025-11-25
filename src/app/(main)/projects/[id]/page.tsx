@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import PropertyImageGallery from '@/components/PropertyImageGallery';
+import { RichTextRenderer } from '@/components/RichTextRenderer';
 import { getAllProjectSlugs, getProjectBySlug } from '@/util/payloadQueries';
 import { transformPayloadProject } from '@/util/transformPayloadData';
 
@@ -64,7 +65,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <div className="flex flex-col items-start mb-6">
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Development Overview</h2>
                 </div>
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed">{project.fullDescription}</p>
+                <RichTextRenderer content={project.fullDescription} />
               </div>
             )}
 

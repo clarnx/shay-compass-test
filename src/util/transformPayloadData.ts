@@ -1,6 +1,5 @@
 import type { Project } from '@/types/projectType'
 import { getMediaUrl } from '@/util/mediaHelpers'
-import { extractTextFromRichText } from '@/util/richTextHelpers'
 
 /**
  * Transform Payload project data to match frontend Project interface
@@ -12,10 +11,7 @@ export function transformPayloadProject(payloadProject: any): Project {
     title: payloadProject.title || '',
     description: payloadProject.description || '',
     heroImage: getMediaUrl(payloadProject.heroImage) || '',
-    fullDescription:
-      typeof payloadProject.fullDescription === 'string'
-        ? payloadProject.fullDescription
-        : extractTextFromRichText(payloadProject.fullDescription),
+    fullDescription: payloadProject.fullDescription,
     technologies: payloadProject.technologies?.map((t: any) => t.technology || t) || [],
     features: payloadProject.features?.map((f: any) => f.feature || f) || [],
     gallery: payloadProject.gallery?.map((g: any) => getMediaUrl(g.image || g) || '') || [],
