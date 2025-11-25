@@ -68,7 +68,7 @@ export interface Company {
  */
 export interface NeighborhoodFeature {
   title: string;
-  description: string;
+  description: LexicalRichText | string; // Support both formats during migration
   image: Media | string;
   imageAlt: string;
 }

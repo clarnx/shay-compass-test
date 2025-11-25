@@ -21,9 +21,9 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
       const paragraphNode = node as any
       return (
         <p className="mb-4 text-lg md:text-xl text-gray-700 leading-relaxed">
-          {paragraphNode.children?.map((child: SerializedLexicalNode, index: number) =>
-            renderNode(child)
-          )}
+          {paragraphNode.children?.map((child: SerializedLexicalNode, index: number) => (
+            <React.Fragment key={index}>{renderNode(child)}</React.Fragment>
+          ))}
         </p>
       )
     }
@@ -67,7 +67,9 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 
       return (
         <HeadingTag className={headingClasses[tag as keyof typeof headingClasses] || headingClasses.h2}>
-          {headingNode.children?.map((child: SerializedLexicalNode) => renderNode(child))}
+          {headingNode.children?.map((child: SerializedLexicalNode, index: number) => (
+            <React.Fragment key={index}>{renderNode(child)}</React.Fragment>
+          ))}
         </HeadingTag>
       )
     }
@@ -92,21 +94,27 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
       const listItemNode = node as any
       return (
         <li className="mb-2">
-          {listItemNode.children?.map((child: SerializedLexicalNode) => renderNode(child))}
+          {listItemNode.children?.map((child: SerializedLexicalNode, index: number) => (
+            <React.Fragment key={index}>{renderNode(child)}</React.Fragment>
+          ))}
         </li>
       )
     }
 
-    if (nodeType === 'link') {
+    if (nodeType === 'link' || nodeType === 'autolink') {
       const linkNode = node as any
+      // Payload's link nodes may have url in different locations
+      const url = linkNode.url || linkNode.fields?.url || linkNode.fields?.linkType === 'custom' ? linkNode.fields?.url : '#'
       return (
         <a
-          href={linkNode.url}
+          href={url}
           className="text-blue-600 hover:text-blue-800 underline"
-          target={linkNode.target || '_self'}
-          rel={linkNode.rel || undefined}
+          target={linkNode.target || linkNode.fields?.newTab ? '_blank' : '_self'}
+          rel={linkNode.rel || (linkNode.fields?.newTab ? 'noopener noreferrer' : undefined)}
         >
-          {linkNode.children?.map((child: SerializedLexicalNode) => renderNode(child))}
+          {linkNode.children?.map((child: SerializedLexicalNode, index: number) => (
+            <React.Fragment key={index}>{renderNode(child)}</React.Fragment>
+          ))}
         </a>
       )
     }

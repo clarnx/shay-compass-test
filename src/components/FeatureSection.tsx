@@ -1,8 +1,10 @@
 import Image from 'next/image';
+import { RichTextRenderer } from '@/components/RichTextRenderer';
+import { LexicalRichText } from '@/types/payload';
 
 interface FeatureSectionProps {
     title: string;
-    description: string;
+    description: LexicalRichText | string; // Support both rich text and plain text
     image: string;
     imageAlt: string;
     imageOnRight?: boolean;
@@ -39,9 +41,13 @@ export default function FeatureSection({
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                     {title}
                 </h2>
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                    {description}
-                </p>
+                {typeof description === 'string' ? (
+                    <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                        {description}
+                    </p>
+                ) : (
+                    <RichTextRenderer content={description as any} />
+                )}
             </div>
         </div>
     );

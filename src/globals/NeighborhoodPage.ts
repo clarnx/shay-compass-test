@@ -53,9 +53,12 @@ export const NeighborhoodPage: GlobalConfig = {
         },
         {
           name: "description",
-          type: "textarea",
+          type: "richText",
           label: "Description",
           required: true,
+          admin: {
+            description: "Rich text description for this feature (supports formatting, lists, links)",
+          },
         },
         {
           name: "image",
