@@ -26,17 +26,16 @@ export default function ContactSection({
 }: ContactSectionProps) {
   const router = useRouter();
 
-  const handleFormSubmit = (event: { preventDefault: () => void; target: any }) => {
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const myForm = event.target;
+    const myForm = event.currentTarget;
     const formData = new FormData(myForm);
 
-    fetch("__form.html", {
+    fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      // @ts-ignore
-      body: new URLSearchParams(formData).toString(),
+      body: new URLSearchParams(formData as any).toString(),
     })
       .then(() => router.push("/success"))
       .catch((error) => alert(error));
@@ -54,6 +53,7 @@ export default function ContactSection({
           className="space-y-6"
           onSubmit={(e) => handleFormSubmit(e)}
         >
+          <input type="hidden" name="form-name" value="contact" />
           <input
             type="text"
             name="honeypot"
