@@ -1,7 +1,7 @@
 "use client";
 import PageSection from './PageSection';
 import SectionHeading from './SectionHeading';
-import router from 'next/router';
+import { useRouter } from 'next/navigation';
 
 interface ContactSectionProps {
   title: string;
@@ -24,6 +24,7 @@ export default function ContactSection({
   messagePlaceholder,
   submitButtonText,
 }: ContactSectionProps) {
+  const router = useRouter();
 
   const handleFormSubmit = (event: { preventDefault: () => void; target: any }) => {
     event.preventDefault();
