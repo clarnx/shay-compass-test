@@ -29,10 +29,10 @@ export default function ContactSection({
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const myForm = event.currentTarget;
+    const myForm = event.targe;
     const formData = new FormData(myForm);
 
-    fetch("/", {
+    fetch("/__forms.html", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData as any).toString(),
@@ -51,7 +51,7 @@ export default function ContactSection({
           data-netlify="true"
           data-netlify-honeypot="honeypot"
           className="space-y-6"
-          onSubmit={(e) => handleFormSubmit(e)}
+          onSubmit={handleFormSubmit}
         >
           <input type="hidden" name="form-name" value="contact" />
           <input
