@@ -29,7 +29,7 @@ export default function ContactSection({
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const myForm = event.target;
+    const myForm = event.currentTarget;
     const formData = new FormData(myForm);
 
     fetch("/__forms.html", {
