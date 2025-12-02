@@ -51,7 +51,7 @@ export default function ContactSection({
           data-netlify="true"
           data-netlify-honeypot="honeypot"
           className="space-y-6"
-          onSubmit={handleFormSubmit}
+          onSubmit={(e) => handleFormSubmit(e)}
         >
           <input type="hidden" name="form-name" value="contact" />
           <input
